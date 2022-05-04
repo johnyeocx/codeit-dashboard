@@ -1,0 +1,62 @@
+
+.main-container {
+  display: flex;  
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px 50px;
+}
+
+.main-container h2 {
+    align-self: flex-start;
+    font-weight: 600;
+    /* padding-left: 10px; */
+    margin-bottom: 30px;
+}
+
+.course-container {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    margin-bottom: 30px;
+}
+
+#results-table .ant-table-thead > tr > th {
+    user-select: none;
+    font-weight: 600;
+}
+#results-table .ant-table-tbody > tr > td {
+    user-select: none;
+}
+.report-button {
+    color:rgb(7, 175, 253);
+    font-size: 20px;
+}
+
+.delete-button {
+    color:rgb(255, 96, 96);
+    font-size: 20px;
+}
+
+.report-button:hover {
+    transition: 0.3s;
+}
+
+.grade-text-passed {
+    margin: 0px;
+    padding: 0px;
+    color: rgb(114, 188, 114);
+    font-weight: 600;
+}
+
+.grade-text-failed {
+    margin: 0px;
+    padding: 0px;
+    color: rgb(255, 127, 127);
+    font-weight: 600;
+}
+
+.course-select {
+    height: 30px;
+    border: none;
+    outline: none;
+    padding: 0px 10px;
+}

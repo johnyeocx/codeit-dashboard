@@ -1,24 +1,31 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Results from './pages/Results/Results';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Report from './pages/Report/Report';
+import 'antd/dist/antd.css';
+import CourseSelector from './pages/CourseSelector/CourseSelector';
 
+const getCurrentCourse = () => {
+
+  let current = localStorage.getItem('current_course')
+  if (current) {
+    return current
+  } else {
+    return "advanced"
+  }
+}
 function App() {
+  const [report, setReport] = useState(null);
+  const [course, setCourse] = useState(getCurrentCourse())
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        {/* <Route path='/' element={<CourseSelector setCourse={setCourse} />} /> */}
+        <Route path='/' element={<Results course={course} setReport={setReport} setCourse={setCourse} />} />
+        <Route path='/report/:reportId' element={<Report report={report} setReport={setReport} />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
