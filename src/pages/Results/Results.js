@@ -39,10 +39,6 @@ function Results({ course, setCourse, setReport }) {
             title: 'Name',
             dataIndex: 'repl',
             key: 'repl',
-            // sorter: {
-            //     compare: (a, b) => studentInfoByReplName[a.repl].name
-            //         < studentInfoByReplName[b.repl].name,
-            // },
             render: (text) => (
                 <>{studentInfoByReplName[text] ? studentInfoByReplName[text].name : text}</>
             )
@@ -79,11 +75,15 @@ function Results({ course, setCourse, setReport }) {
             title: 'Grade',
             dataIndex: 'grade',
             key: 'grade',
-            render: (text, row) => (
-                <p className={row.passed ? "grade-text-passed" : "grade-text-failed"}>
-                    {`${text}%`}
-                </p>
-            )
+            render: (text, row) => {
+                console.log(row)
+
+                return (
+                    <p className={row.passed ? "grade-text-passed" : "grade-text-failed"}>
+                        {`${text}%`}
+                    </p>
+                )
+            }
         },
         {
             title: 'Report',
@@ -134,7 +134,25 @@ function Results({ course, setCourse, setReport }) {
         psetObjectRow('PSET 3'),
         psetObjectRow('PSET 4'),
         psetObjectRow('PSET 5'),
-        psetObjectRow('PSET 6'),
+        {
+            title: 'Average',
+            dataIndex: 'repl',
+            key: 'repl',
+            render: (text, row) => {
+                console.log(row)
+                let total = 0
+                let count = 0
+                for (let i = 1; i < 6; i++) {
+                    let key = "PSET " + i.toString()
+                    if (row[key]) {
+                        total += row[key].grade
+                    }
+                }
+                return (
+                    <>{`${total / 5}%`}</>
+                )
+            }
+        },
     ]
 
     const sortByName = (results) => {
