@@ -139,7 +139,6 @@ function Results({ course, setCourse, setReport }) {
             dataIndex: 'repl',
             key: 'repl',
             render: (text, row) => {
-                console.log(row)
                 let total = 0
                 let count = 0
                 for (let i = 1; i < 6; i++) {
@@ -167,9 +166,9 @@ function Results({ course, setCourse, setReport }) {
             let length = newGradesByName.length
 
             let assignmentName = results[curIndex].assignment_name
-
             let grade = results[curIndex].grade
-            newGradesByName[length - 1][assignmentName] = {
+            newGradesByName[length - 1]
+            [assignmentName] = {
                 grade,
                 _id: results[curIndex]._id
             }
@@ -177,7 +176,6 @@ function Results({ course, setCourse, setReport }) {
             var prevName = results[curIndex].repl
             curIndex += 1
         }
-        console.log(newGradesByName);
         setGradesByName(newGradesByName)
         setFilteredGradesByName(newGradesByName)
     }
@@ -224,7 +222,9 @@ function Results({ course, setCourse, setReport }) {
 
     const getStudentInfo = async () => {
         try {
-            const res = await getStudentInfoRequest(course)
+            const sheetName = "July Master Information #3"
+            const sheetNumber = 0
+            const res = await getStudentInfoRequest(course, sheetName, sheetNumber)
             if (!res.status == 200 && !res.data && !res.data.info) return
 
             const info = res.data.info
@@ -285,7 +285,7 @@ function Results({ course, setCourse, setReport }) {
                     localStorage.setItem('current_course', e.target.value)
                     setCourse(e.target.value)
                 }}>
-                    <option value="essentials">CodeIT Essentials</option>
+                    {/* <option value="essentials">CodeIT Essentials</option> */}
                     <option value="advanced">CodeIT Advanced</option>
                 </select>
             </div>

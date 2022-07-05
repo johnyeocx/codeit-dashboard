@@ -34,7 +34,7 @@ function Report() {
             <Spin size="large" />
         </div>
     )
-    console.log(data)
+
     return (
         <div style={{ padding: "30px 70px" }}>
             <h2 style={{ fontWeight: 'bold' }}>{`${data.repl}, ${data.assignment_name}`}</h2>
